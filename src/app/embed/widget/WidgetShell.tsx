@@ -22,7 +22,15 @@ import { ThreadPanel } from "./ThreadPanel";
  */
 type View = "closed" | "list" | "thread";
 
-export function WidgetShell({ apiKey }: { apiKey: string }) {
+export function WidgetShell({
+  apiKey,
+  brandName,
+  brandLogo,
+}: {
+  apiKey: string;
+  brandName?: string;
+  brandLogo?: string;
+}) {
   const [view, setView] = useState<View>("closed");
   const [openConvId, setOpenConvId] = useState<string | null>(null);
 
@@ -116,17 +124,32 @@ export function WidgetShell({ apiKey }: { apiKey: string }) {
           to match (no empty gutter around it). */}
       {view !== "closed" && (
         <div
-          className="pointer-events-auto bg-white rounded-2xl shadow-2xl border border-zinc-200 flex flex-col overflow-hidden w-full h-full"
+          className="pointer-events-auto bg-zinc-50 rounded-2xl shadow-2xl ring-1 ring-black/10 border border-zinc-300 flex flex-col overflow-hidden w-full h-full"
         >
-          <header className="flex items-center justify-between border-b border-zinc-200 px-4 py-3 bg-white">
-            <span className="text-sm font-semibold text-zinc-900">
-              {view === "thread" ? "Conversation" : "Support inbox"}
-            </span>
+          <header className="flex items-center justify-between border-b border-zinc-200 px-4 py-3 bg-zinc-100">
+            <div className="flex items-center gap-2 min-w-0">
+              {brandLogo ? (
+                // Brand logo passed via ?logo= on the iframe src.
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={brandLogo}
+                  alt=""
+                  className="h-6 w-6 rounded object-contain"
+                />
+              ) : null}
+              <span className="text-sm font-semibold text-zinc-900 truncate">
+                {view === "thread"
+                  ? "Conversation"
+                  : brandName
+                    ? `${brandName} · Support inbox`
+                    : "Support inbox"}
+              </span>
+            </div>
             <button
               type="button"
               onClick={close}
               aria-label="Close"
-              className="p-1.5 rounded-md hover:bg-zinc-100 text-zinc-500"
+              className="p-1.5 rounded-md hover:bg-zinc-200 text-zinc-500 shrink-0"
             >
               <X className="h-4 w-4" />
             </button>

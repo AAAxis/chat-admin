@@ -15,9 +15,9 @@ import { WidgetShell } from "./WidgetShell";
 export default async function WidgetPage({
   searchParams,
 }: {
-  searchParams: Promise<{ key?: string }>;
+  searchParams: Promise<{ key?: string; name?: string; logo?: string }>;
 }) {
-  const { key } = await searchParams;
+  const { key, name, logo } = await searchParams;
   try {
     await verifyEmbedKey(key);
   } catch (err) {
@@ -28,5 +28,5 @@ export default async function WidgetPage({
     );
   }
 
-  return <WidgetShell apiKey={key!} />;
+  return <WidgetShell apiKey={key!} brandName={name} brandLogo={logo} />;
 }
