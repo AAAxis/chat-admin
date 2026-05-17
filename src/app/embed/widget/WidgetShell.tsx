@@ -26,10 +26,14 @@ export function WidgetShell({
   apiKey,
   brandName,
   brandLogo,
+  flatTop = false,
 }: {
   apiKey: string;
   brandName?: string;
   brandLogo?: string;
+  /** When true, drop the panel's rounded top corners so it sits flush
+   *  under host-rendered chrome (e.g. LocalDelivery's drag bar). */
+  flatTop?: boolean;
 }) {
   const [view, setView] = useState<View>("closed");
   const [openConvId, setOpenConvId] = useState<string | null>(null);
@@ -124,9 +128,15 @@ export function WidgetShell({
           to match (no empty gutter around it). */}
       {view !== "closed" && (
         <div
-          className="pointer-events-auto bg-zinc-50 rounded-2xl shadow-2xl ring-1 ring-black/10 border border-zinc-300 flex flex-col overflow-hidden w-full h-full"
+          className={`pointer-events-auto bg-zinc-50 shadow-2xl ring-1 ring-black/10 border border-zinc-300 flex flex-col overflow-hidden w-full h-full ${
+            flatTop ? "rounded-b-2xl" : "rounded-2xl"
+          }`}
         >
-          <header className="flex items-center justify-between border-b border-zinc-200 px-4 py-3 bg-zinc-100">
+          <header
+            className={`flex items-center justify-between border-b border-zinc-200 px-4 py-3 bg-zinc-100 ${
+              flatTop ? "" : "rounded-t-2xl"
+            }`}
+          >
             <div className="flex items-center gap-2 min-w-0">
               {brandLogo ? (
                 // Brand logo passed via ?logo= on the iframe src.
