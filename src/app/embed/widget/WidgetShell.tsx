@@ -169,6 +169,16 @@ export function WidgetShell({
               />
             )}
           </div>
+          <footer className="border-t border-zinc-200 px-4 py-2 bg-zinc-100 text-center">
+            <a
+              href="http://chatkit.cc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] text-zinc-500 hover:text-zinc-700"
+            >
+              Powered by <span className="font-semibold">ChatKit</span>
+            </a>
+          </footer>
         </div>
       )}
 
