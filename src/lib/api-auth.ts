@@ -22,12 +22,16 @@ export interface AuthedTenant {
 export async function authTenant(
   request: Request,
 ): Promise<{ tenant: AuthedTenant } | { error: NextResponse }> {
-  const apiKey = request.headers.get("x-tinychat-api-key");
+  // Accept either the legacy x-tinychat-api-key header or Authorization:
+  // Bearer <key>. The dashboard (LocalDelivery) uses Bearer; the mobile
+  // SDK uses x-tinychat-api-key.
+  const bearer = request.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
+  const apiKey = bearer ?? request.headers.get("x-tinychat-api-key");
   if (!apiKey) {
     return {
       error: NextResponse.json(
-        { error: "missing x-tinychat-api-key header" },
-        { status: 401 },
+        { error: "missing api key (x-tinychat-api-key or Authorization: Bearer)" },
+        { status: 401, headers: corsHeaders },
       ),
     };
   }
@@ -67,6 +71,6 @@ export async function authTenant(
 export const corsHeaders = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PATCH, DELETE, OPTIONS",
-  "access-control-allow-headers": "content-type, x-tinychat-api-key",
+  "access-control-allow-headers": "content-type, x-tinychat-api-key, authorization",
   "access-control-max-age": "86400",
 } as const;
