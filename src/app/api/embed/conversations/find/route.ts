@@ -110,10 +110,22 @@ export async function POST(request: NextRequest) {
       : payload.kind === "support"
         ? [payload.external_ref] // support: end-user is the participant
         : [];
+  // inbox_id is NOT NULL on the live conversations table. verifyEmbedKey
+  // resolves it from the API key; without this the insert errors and
+  // the widget falls back to the list view, which manifested as
+  // "chat with customer opens all chats instead" since customers
+  // didn't have a pre-existing row to short-circuit the lookup above.
+  if (!session.inboxId) {
+    return NextResponse.json(
+      { error: "no inbox configured for tenant" },
+      { status: 500 },
+    );
+  }
   const { data: inserted, error } = await service
     .from("conversations")
     .insert({
       tenant_id: session.tenantId,
+      inbox_id: session.inboxId,
       kind: payload.kind,
       external_ref: payload.external_ref,
       participants,

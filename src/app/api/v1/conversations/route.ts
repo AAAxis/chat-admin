@@ -100,10 +100,17 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  if (!tenant.inboxId) {
+    return NextResponse.json(
+      { error: "no inbox configured for tenant" },
+      { status: 500, headers: corsHeaders },
+    );
+  }
   const { data, error } = await service
     .from("conversations")
     .insert({
       tenant_id: tenant.id,
+      inbox_id: tenant.inboxId,
       kind: payload.kind,
       external_ref: payload.external_ref ?? null,
       participants,

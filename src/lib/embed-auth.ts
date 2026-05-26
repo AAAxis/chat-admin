@@ -30,6 +30,12 @@ import { getServiceClient } from "@/lib/supabase/server";
 export interface EmbedSession {
   tenantId: string;
   tenantName: string;
+  /** Inbox the conversation should be filed under. The live `conversations`
+   *  table has a NOT NULL `inbox_id` column added out-of-band; without it
+   *  every insert fails and the embed widget falls back to the list view.
+   *  Resolved by API-key match on the inboxes table when available, or by
+   *  picking the tenant's single non-archived inbox as a fallback. */
+  inboxId: string | null;
 }
 
 class EmbedAuthError extends Error {
@@ -117,5 +123,30 @@ export async function verifyEmbedKey(key: string | undefined | null): Promise<Em
   if (error || !data) throw new EmbedAuthError("invalid key");
   if (data.status !== "active") throw new EmbedAuthError(`tenant ${data.status}`);
 
-  return { tenantId: data.id, tenantName: data.name };
+  // Resolve which inbox a new conversation should be filed under. The
+  // shipping schema has inboxes per business; for tenants that haven't
+  // adopted that layer the lookup may return nothing, in which case
+  // callers must be ready for a null inboxId.
+  let inboxId: string | null = null;
+  const { data: keyInbox } = await service
+    .from("inboxes")
+    .select("id")
+    .eq("api_key", key)
+    .is("archived_at", null)
+    .maybeSingle();
+  if (keyInbox) {
+    inboxId = keyInbox.id;
+  } else {
+    const { data: tenantInboxes } = await service
+      .from("inboxes")
+      .select("id")
+      .eq("business_id", data.id)
+      .is("archived_at", null)
+      .limit(2);
+    if (tenantInboxes && tenantInboxes.length === 1) {
+      inboxId = tenantInboxes[0].id;
+    }
+  }
+
+  return { tenantId: data.id, tenantName: data.name, inboxId };
 }

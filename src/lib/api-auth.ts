@@ -15,6 +15,8 @@ export interface AuthedTenant {
   name: string;
   api_key: string;
   status: "active" | "overage" | "suspended";
+  /** See EmbedSession.inboxId — same drift; required on conversation insert. */
+  inboxId: string | null;
 }
 
 /** Parse + validate the api_key header. Returns either a tenant row
@@ -62,7 +64,30 @@ export async function authTenant(
       ),
     };
   }
-  return { tenant: data as AuthedTenant };
+
+  // Resolve inbox the same way verifyEmbedKey does. See EmbedSession.inboxId.
+  let inboxId: string | null = null;
+  const { data: keyInbox } = await service
+    .from("inboxes")
+    .select("id")
+    .eq("api_key", apiKey)
+    .is("archived_at", null)
+    .maybeSingle();
+  if (keyInbox) {
+    inboxId = keyInbox.id;
+  } else {
+    const { data: tenantInboxes } = await service
+      .from("inboxes")
+      .select("id")
+      .eq("business_id", data.id)
+      .is("archived_at", null)
+      .limit(2);
+    if (tenantInboxes && tenantInboxes.length === 1) {
+      inboxId = tenantInboxes[0].id;
+    }
+  }
+
+  return { tenant: { ...data, inboxId } as AuthedTenant };
 }
 
 /** CORS headers for SDK origins — the RN app calls from a webview-like
