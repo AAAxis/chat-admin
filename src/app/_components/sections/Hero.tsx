@@ -99,15 +99,15 @@ export default function Hero() {
               </div>
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-                <Link
-                  href="/login"
+                <a
+                  href="https://app.chatkit.cc"
                   className="group inline-flex items-center gap-2 rounded-full bg-ink text-white pl-5 pr-2 py-2 text-[15px] shadow-lg shadow-ink/10 hover:bg-deep transition-colors"
                 >
                   Start building
                   <span className="grid place-items-center h-7 w-7 rounded-full bg-white text-ink transition-transform group-hover:translate-x-0.5">
                     <ArrowRight className="h-3.5 w-3.5" />
                   </span>
-                </Link>
+                </a>
                 <Link
                   href="#pricing"
                   className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm border border-zinc-200/80 px-5 py-2.5 text-[15px] text-ink shadow-sm hover:bg-white transition-colors"

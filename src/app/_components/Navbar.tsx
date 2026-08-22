@@ -43,15 +43,15 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <Link
-            href="/login"
+          <a
+            href="https://app.chatkit.cc"
             className="inline-flex items-center gap-2 rounded-full bg-ink text-white pl-4 pr-2 py-1 text-sm hover:bg-deep transition-colors"
           >
             Sign in
             <span className="grid place-items-center h-7 w-7 rounded-full bg-white text-ink">
               <ArrowRight className="h-3.5 w-3.5" />
             </span>
-          </Link>
+          </a>
         </nav>
       </div>
     </header>
