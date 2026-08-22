@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Grainient from "../Grainient";
+import { SIGN_IN_URL } from "@/lib/links";
 
 export default function Hero() {
   return (
@@ -100,7 +101,7 @@ export default function Hero() {
 
               <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <a
-                  href="https://app.chatkit.cc"
+                  href={SIGN_IN_URL}
                   className="group inline-flex items-center gap-2 rounded-full bg-ink text-white pl-5 pr-2 py-2 text-[15px] shadow-lg shadow-ink/10 hover:bg-deep transition-colors"
                 >
                   Start building

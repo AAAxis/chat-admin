@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { SIGN_IN_URL } from "@/lib/links";
 
 export default function Navbar() {
   return (
@@ -44,7 +45,7 @@ export default function Navbar() {
           </div>
 
           <a
-            href="https://app.chatkit.cc"
+            href={SIGN_IN_URL}
             className="inline-flex items-center gap-2 rounded-full bg-ink text-white pl-4 pr-2 py-1 text-sm hover:bg-deep transition-colors"
           >
             Sign in
