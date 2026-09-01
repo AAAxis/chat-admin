@@ -7,9 +7,9 @@ import { SupportHero } from "./_components/SupportHero";
 import { VisitorSupportWidget } from "./_components/VisitorSupportWidget";
 
 export const metadata: Metadata = {
-  title: "Support — TinyChat",
+  title: "Support — Chatkit",
   description:
-    "Get help from the TinyChat team. Tap the chat bubble to talk to us — yes, it's our own product.",
+    "Get help from the Chatkit team. Tap the chat bubble to talk to us — yes, it's our own product.",
 };
 
 export default function SupportPage() {

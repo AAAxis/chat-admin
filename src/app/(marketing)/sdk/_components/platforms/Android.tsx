@@ -95,13 +95,13 @@ export function AndroidDocs() {
           lang="kotlin"
           code={`lifecycleScope.launch {
   TinyChat.events.messages.collect { message ->
-    Log.d("TinyChat", "inbound $message")
+    Log.d("Chatkit", "inbound $message")
   }
 }
 
 lifecycleScope.launch {
   TinyChat.events.toggles.collect { isOpen ->
-    Log.d("TinyChat", "widget open: $isOpen")
+    Log.d("Chatkit", "widget open: $isOpen")
   }
 }`}
         />

@@ -17,7 +17,7 @@ export default function FAQ() {
                   </span>
                 </h2>
                 <p className="text-deep/70 leading-relaxed text-[16px] font-normal max-w-[320px]">
-                  Everything you need to know about TinyChat. Can&apos;t find
+                  Everything you need to know about Chatkit. Can&apos;t find
                   what you&apos;re looking for? Drop us a line.
                 </p>
               </div>
@@ -52,7 +52,7 @@ export default function FAQ() {
           <div className="px-6 sm:px-12 md:px-16 lg:px-20 py-5 flex flex-col md:flex-row justify-between items-center gap-6 text-[15px]">
             <p className="text-deep/70 font-medium">Still have questions?</p>
             <a
-              href="#"
+              href="/support"
               className="inline-flex items-center gap-2 text-deep font-medium hover:text-ink transition-colors"
             >
               Contact support

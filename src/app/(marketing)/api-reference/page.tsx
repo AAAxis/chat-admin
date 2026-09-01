@@ -37,7 +37,7 @@ import {
 } from "./_components/snippets";
 
 export const metadata: Metadata = {
-  title: "API reference — TinyChat",
+  title: "API reference — Chatkit",
   description:
     "REST API for sending messages, managing conversations, and uploading attachments.",
 };
@@ -115,7 +115,7 @@ export default function ApiReferencePage() {
           <div className="max-w-3xl">
             <p className="text-[14px] font-medium text-deep/60">API reference</p>
             <h1 className="mt-4 text-4xl sm:text-6xl tracking-tight text-ink leading-[1] font-normal">
-              The TinyChat{" "}
+              The Chatkit{" "}
               <span className="font-serif-italic text-deep">
                 REST surface<span className="text-deep/40">.</span>
               </span>

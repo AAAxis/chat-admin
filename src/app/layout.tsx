@@ -16,7 +16,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "TinyChat",
+  title: "Chatkit",
   description: "Drop-in chat infrastructure for delivery and marketplace apps.",
   // Google Search Console ownership verification. Google will not approve the
   // OAuth consent screen until chatkit.cc is verified to the same account, and

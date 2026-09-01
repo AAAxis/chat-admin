@@ -83,7 +83,7 @@ export function SupportWidget({ apiKey }: { apiKey: string }) {
         ref={iframeRef}
         onLoad={handleLoad}
         src={`/embed/widget?key=${encodeURIComponent(apiKey)}`}
-        title="TinyChat support"
+        title="Chatkit support"
         allow="clipboard-write"
         className="w-full h-full border-0 bg-transparent rounded-2xl"
       />

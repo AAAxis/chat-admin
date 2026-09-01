@@ -28,7 +28,7 @@ export default function Install() {
                   <p className="mt-5 text-deep/70 leading-relaxed text-[16px] font-normal">
                     One package per platform, one env var, zero backend. Render
                     the widget, paste your API key, and start receiving tickets
-                    in your TinyChat inbox.
+                    in your Chatkit inbox.
                   </p>
                   <div className="mt-6 inline-flex items-center gap-2 rounded-lg border border-mist bg-mist/40 px-3 py-2 font-mono text-xs text-deep shadow-sm">
                     <span className="text-deep/40">$</span>

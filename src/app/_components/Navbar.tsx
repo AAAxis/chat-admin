@@ -10,12 +10,12 @@ export default function Navbar() {
         <nav className="flex items-center justify-between rounded-full bg-white/90 backdrop-blur-md border border-zinc-200/80 shadow-lg shadow-ink/5 p-2">
           <Link
             href="/"
-            aria-label="TinyChat"
+            aria-label="Chatkit"
             className="grid place-items-center h-10 w-10 rounded-full bg-white border border-zinc-200/80 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
           >
             <Image
               src="/tclogo.png"
-              alt="TinyChat"
+              alt="Chatkit"
               width={32}
               height={32}
               priority

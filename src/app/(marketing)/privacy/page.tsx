@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — TinyChat",
+  title: "Privacy Policy — Chatkit",
   description:
-    "How Montigate LLC collects, uses and protects your data in TinyChat and on chatkit.cc.",
+    "How Montigate LLC collects, uses and protects your data in Chatkit and on chatkit.cc.",
 };
 
 /** Google's OAuth verification fetches this URL directly, so it must render
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
               </span>
             </h1>
             <p className="mt-5 text-deep/70 leading-relaxed text-[16px] max-w-[620px]">
-              What TinyChat collects, why, who it goes to, and how to get rid of
+              What Chatkit collects, why, who it goes to, and how to get rid of
               it. Written to be read, not to be survived.
             </p>
             <p className="mt-4 text-[14px] text-deep/60">
@@ -69,14 +69,14 @@ export default function PrivacyPage() {
             <div className="p-8 md:p-10 lg:p-12 max-w-[760px] space-y-12">
               <Section id="who-we-are" title="Who we are">
                 <p>
-                  TinyChat is operated by <strong>Montigate LLC</strong>
-                  {" ("}&ldquo;we&rdquo;, &ldquo;us&rdquo;{")"}. TinyChat is
+                  Chatkit is operated by <strong>Montigate LLC</strong>
+                  {" ("}&ldquo;we&rdquo;, &ldquo;us&rdquo;{")"}. Chatkit is
                   drop-in chat support software: our customers embed it in their
                   own web and mobile apps so they can talk to their users.
                 </p>
                 <p>
-                  This policy covers the TinyChat website at chatkit.cc, the
-                  TinyChat dashboard, and the chat widget and SDKs we provide.
+                  This policy covers the Chatkit website at chatkit.cc, the
+                  Chatkit dashboard, and the chat widget and SDKs we provide.
                   For anything in it, write to{" "}
                   <a
                     href="mailto:info@chatkit.cc"
@@ -88,7 +88,7 @@ export default function PrivacyPage() {
                 </p>
                 <p>
                   Two kinds of people appear in this policy, and it matters which
-                  one you are. <strong>Customers</strong> sign up for a TinyChat
+                  one you are. <strong>Customers</strong> sign up for a Chatkit
                   account and we decide how their account data is handled.{" "}
                   <strong>End users</strong>{" "}
                   are the people who chat inside a
@@ -114,7 +114,7 @@ export default function PrivacyPage() {
                 <p>
                   <strong>Conversation data.</strong>{" "}
                   The messages, files and
-                  images sent through TinyChat, plus the end-user details a
+                  images sent through Chatkit, plus the end-user details a
                   customer&apos;s app passes to us — an opaque user id, and
                   optionally a display name and email address so replies can be
                   routed and notified. Customers choose what to send us here; we
@@ -142,7 +142,7 @@ export default function PrivacyPage() {
                   <code>email</code> and <code>profile</code> scopes).
                 </p>
                 <p>
-                  We use them for exactly one purpose: to create your TinyChat
+                  We use them for exactly one purpose: to create your Chatkit
                   account and sign you into it, and to show your name and picture
                   to you and your teammates inside the dashboard. We do not use
                   Google account data for advertising, we do not sell or transfer
@@ -151,7 +151,7 @@ export default function PrivacyPage() {
                   providers listed below, who store it on our behalf.
                 </p>
                 <p>
-                  TinyChat&apos;s use of information received from Google APIs
+                  Chatkit&apos;s use of information received from Google APIs
                   follows the{" "}
                   <a
                     href="https://developers.google.com/terms/api-services-user-data-policy"
@@ -195,7 +195,7 @@ export default function PrivacyPage() {
 
               <Section id="who-we-share-with" title="Who we share it with">
                 <p>
-                  Only the processors that make TinyChat run, each bound to use
+                  Only the processors that make Chatkit run, each bound to use
                   the data solely for us:
                 </p>
                 <ul className="list-disc pl-5 space-y-2 marker:text-deep/40">
@@ -221,7 +221,7 @@ export default function PrivacyPage() {
 
               <Section id="cookies" title="Cookies">
                 <p>
-                  TinyChat sets cookies for one thing: keeping you signed in.
+                  Chatkit sets cookies for one thing: keeping you signed in.
                   They are strictly necessary, they are not used to profile you,
                   and there are no advertising or analytics cookies on
                   chatkit.cc. Clearing them signs you out.
@@ -285,7 +285,7 @@ export default function PrivacyPage() {
 
               <Section id="children" title="Children">
                 <p>
-                  TinyChat is a business tool and is not directed at children
+                  Chatkit is a business tool and is not directed at children
                   under 13 (or under 16 where local law sets that bar). We do not
                   knowingly collect their data; if we learn we have, we delete
                   it.
