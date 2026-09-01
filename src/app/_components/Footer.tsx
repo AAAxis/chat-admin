@@ -137,7 +137,7 @@ function FooterCard() {
             © {new Date().getFullYear()} TinyChat. All rights reserved.
           </p>
           <div className="flex gap-8 text-deep/70 font-medium items-center">
-            <a href="#" className="hover:text-ink transition-colors">
+            <a href="/privacy" className="hover:text-ink transition-colors">
               Privacy
             </a>
             <div className="w-[1px] h-4 bg-deep/20" />
