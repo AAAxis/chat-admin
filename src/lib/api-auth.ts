@@ -2,7 +2,7 @@
  * API-key authentication for the public REST surface (/api/v1/*).
  *
  * The chat SDK identifies itself with the tenant's `pk_live_…` key in
- * the `x-tinychat-api-key` header. We resolve the key to a tenant row
+ * the `x-chatkit-api-key` header. We resolve the key to a tenant row
  * via the service client (bypassing RLS, since the SDK isn't a logged-
  * in Supabase user) and pass the tenant down to the route handler.
  */
@@ -24,15 +24,22 @@ export interface AuthedTenant {
 export async function authTenant(
   request: Request,
 ): Promise<{ tenant: AuthedTenant } | { error: NextResponse }> {
-  // Accept either the legacy x-tinychat-api-key header or Authorization:
-  // Bearer <key>. The dashboard (LocalDelivery) uses Bearer; the mobile
-  // SDK uses x-tinychat-api-key.
+  // Three accepted forms, in preference order:
+  //   Authorization: Bearer <key>  — what the dashboard (LocalDelivery) sends
+  //   x-chatkit-api-key            — current name, what the docs show
+  //   x-tinychat-api-key           — pre-rename name, still sent by the
+  //                                  published @tinychat/* SDKs at 0.1.0
+  // The old header stays accepted indefinitely: dropping it would break every
+  // integration built before the rename, and it costs one header lookup.
   const bearer = request.headers.get("authorization")?.match(/^Bearer\s+(.+)$/i)?.[1];
-  const apiKey = bearer ?? request.headers.get("x-tinychat-api-key");
+  const apiKey =
+    bearer ??
+    request.headers.get("x-chatkit-api-key") ??
+    request.headers.get("x-tinychat-api-key");
   if (!apiKey) {
     return {
       error: NextResponse.json(
-        { error: "missing api key (x-tinychat-api-key or Authorization: Bearer)" },
+        { error: "missing api key (x-chatkit-api-key or Authorization: Bearer)" },
         { status: 401, headers: corsHeaders },
       ),
     };
@@ -96,6 +103,7 @@ export async function authTenant(
 export const corsHeaders = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PATCH, DELETE, OPTIONS",
-  "access-control-allow-headers": "content-type, x-tinychat-api-key, authorization",
+  "access-control-allow-headers":
+    "content-type, x-chatkit-api-key, x-tinychat-api-key, authorization",
   "access-control-max-age": "86400",
 } as const;
